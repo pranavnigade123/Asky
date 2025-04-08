@@ -130,38 +130,33 @@ body {
   background: #005fa3;
 }
 
-/* 🎯 Responsive Styling */
 @media screen and (max-width: 600px) {
   body {
-    height: auto;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
     align-items: flex-start;
+    height: auto;
   }
 
   .app {
     width: 100%;
-    height: 100vh;
-    border-radius: 0;
-    box-shadow: none;
+    max-width: 500px;
+    height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin: 0 auto;
   }
 
   .input-area {
-    padding: 10px;
-    flex-direction: column;
-    gap: 8px;
+    flex-wrap: nowrap;
   }
 
   .input-area input {
-    width: 100%;
-    border-radius: 16px;
+    font-size: 14px;
   }
 
   .input-area button {
-    width: 100%;
-    margin-left: 0;
-    border-radius: 16px;
-  }
-
-  .message {
     font-size: 14px;
   }
 }
