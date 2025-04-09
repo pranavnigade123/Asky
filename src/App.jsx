@@ -33,7 +33,7 @@ function App() {
             ...newMessages
           ],
           temperature: 0.7,
-          max_tokens: 500
+          max_tokens: 100
         },
         {
           headers: {
@@ -55,35 +55,39 @@ function App() {
 
   return (
     <div className="app">
-  <h2>🤖 Asky</h2>
+      <h2>🤖 Asky</h2>
 
-  <div className="messages">
-    {messages.map((msg, idx) => (
-      <div key={idx} className={`message ${msg.role}`}>
-        <b>{msg.role === 'user' ? 'You' : 'Asky'}:</b> {msg.content}
+      <div className="messages">
+        {messages.map((msg, idx) => (
+          <div key={idx} className={`message ${msg.role}`}>
+            <b>{msg.role === 'user' ? 'You' : 'Asky'}:</b> {msg.content}
+          </div>
+        ))}
+        {isTyping && (
+          <div className="message assistant typing">
+            <span className="dot"></span>
+            <span className="dot"></span>
+            <span className="dot"></span>
+          </div>
+        )}
+        <div ref={bottomRef}></div>
       </div>
-    ))}
-    {isTyping && (
-      <div className="message assistant typing">
-        <span className="dot"></span>
-        <span className="dot"></span>
-        <span className="dot"></span>
+
+      <div className="input-area">
+        <input
+          type="text"
+          value={input}
+          placeholder="Ask something..."
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSend();
+            }
+          }}
+        />
+        <button onClick={handleSend}>Send</button>
       </div>
-    )}
-    <div ref={bottomRef}></div>
-  </div>
-
-  <div className="input-area">
-    <input
-      type="text"
-      value={input}
-      placeholder="Ask something..."
-      onChange={(e) => setInput(e.target.value)}
-    />
-    <button onClick={handleSend}>Send</button>
-  </div>
-</div>
-
+    </div>
   );
 }
 
